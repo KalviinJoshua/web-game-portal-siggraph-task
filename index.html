@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#05060f" />
+    <meta
+      name="description"
+      content="Nebula Runner — a browser-based 3D endless space runner built with Three.js. Dodge asteroids, collect energy, and survive the storm."
+    />
+    <title>Nebula Runner — 3D Endless Space Runner</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- App root. The Game Hub is authored as real semantic HTML; the game
+         screen and its overlays are built by the JS modules on demand. -->
+    <div id="app">
+      <!-- ===================== GAME HUB ===================== -->
+      <div id="hub" class="hub" data-view="hub">
+        <!-- Lightweight animated star background (2D canvas, not Three.js) -->
+        <canvas id="hub-stars" class="hub__stars" aria-hidden="true"></canvas>
+
+        <!-- ---------- Navigation ---------- -->
+        <header class="nav" id="nav">
+          <a class="nav__logo" href="#top" aria-label="Nebula Runner home">
+            <span class="nav__logo-mark" aria-hidden="true"></span>
+            <span class="nav__logo-text">NEBULA<strong>RUNNER</strong></span>
+          </a>
+
+          <button
+            class="nav__toggle"
+            id="nav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <span></span><span></span><span></span>
+          </button>
+
+          <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <a href="#top" data-nav>Home</a>
+            <a href="#games" data-nav>Play</a>
+            <button type="button" class="nav__link-btn" data-action="leaderboard">Leaderboard</button>
+            <a href="#about" data-nav>About</a>
+          </nav>
+        </header>
+
+        <main id="top" class="hub__main">
+          <!-- ---------- Hero ---------- -->
+          <section class="hero" aria-labelledby="hero-title">
+            <p class="hero__label">ACM SIGGRAPH <span aria-hidden="true">//</span> GAME LAB</p>
+            <h1 class="hero__title" id="hero-title">NEBULA<br />RUNNER</h1>
+            <p class="hero__subtitle">Navigate the void. Survive the storm.</p>
+            <p class="hero__desc">
+              Pilot your spacecraft through an endless cosmic corridor, dodge incoming
+              debris, collect energy and survive as long as possible.
+            </p>
+            <div class="hero__actions">
+              <button type="button" class="btn btn--primary btn--lg" data-action="play">
+                <span class="btn__glow" aria-hidden="true"></span>Play Now
+              </button>
+              <button type="button" class="btn btn--ghost btn--lg" data-action="leaderboard">
+                View Leaderboard
+              </button>
+            </div>
+
+            <dl class="hero__stats" aria-label="Game highlights">
+              <div><dt>Engine</dt><dd>Three.js</dd></div>
+              <div><dt>Mode</dt><dd>Endless</dd></div>
+              <div><dt>Best</dt><dd id="hero-best">000000</dd></div>
+            </dl>
+
+            <a class="hero__scroll" href="#games" aria-label="Scroll to games">
+              <span></span>
+            </a>
+          </section>
+
+          <!-- ---------- Games ---------- -->
+          <section id="games" class="games" aria-labelledby="games-title">
+            <div class="section-head">
+              <h2 id="games-title" class="section-head__title">Available Games</h2>
+              <p class="section-head__sub">Select a mission to begin.</p>
+            </div>
+
+            <div class="games__grid">
+              <!-- Nebula Runner card -->
+              <article class="card card--game">
+                <div class="card__preview" aria-hidden="true">
+                  <div class="card__preview-glow"></div>
+                  <svg class="card__ship" viewBox="0 0 120 90" role="img" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="shipGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#8ad7ff" />
+                        <stop offset="1" stop-color="#4b6bff" />
+                      </linearGradient>
+                    </defs>
+                    <polygon points="60,8 84,64 60,52 36,64" fill="url(#shipGrad)" />
+                    <polygon points="60,8 60,52 36,64" fill="#6a8bff" opacity="0.7" />
+                    <circle cx="60" cy="34" r="6" fill="#dff6ff" />
+                    <polygon points="42,58 60,52 78,58 60,84" fill="#ff8a5c" opacity="0.9" />
+                  </svg>
+                </div>
+                <div class="card__body">
+                  <div class="card__meta">
+                    <span class="tag tag--live">Available</span>
+                    <span class="card__cat">3D Endless Runner</span>
+                  </div>
+                  <h3 class="card__title">Nebula Runner</h3>
+                  <p class="card__desc">Navigate the void. Survive the storm.</p>
+                  <div class="card__foot">
+                    <div class="rating" aria-label="Difficulty 4 out of 5">
+                      <span class="rating__label">Difficulty</span>
+                      <span class="rating__stars" aria-hidden="true">★★★★<span class="dim">★</span></span>
+                    </div>
+                    <button type="button" class="btn btn--primary" data-action="play">Play Now</button>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Coming soon card (clearly locked) -->
+              <article class="card card--locked" aria-disabled="true">
+                <div class="card__preview card__preview--locked" aria-hidden="true">
+                  <div class="card__lock">🔒</div>
+                </div>
+                <div class="card__body">
+                  <div class="card__meta">
+                    <span class="tag tag--soon">Coming Soon</span>
+                    <span class="card__cat">More Games</span>
+                  </div>
+                  <h3 class="card__title">Void Arena</h3>
+                  <p class="card__desc">New missions from the Game Lab are entering orbit.</p>
+                  <div class="card__foot">
+                    <span class="card__status">Status: Locked</span>
+                    <button type="button" class="btn btn--ghost" disabled>Locked</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- About ---------- -->
+          <section id="about" class="about" aria-labelledby="about-title">
+            <div class="section-head">
+              <h2 id="about-title" class="section-head__title">About</h2>
+            </div>
+            <div class="about__grid">
+              <p class="about__lead">
+                <strong>Nebula Runner</strong> is a browser-based 3D endless runner built with
+                Three.js, HTML5, CSS3 and JavaScript.
+              </p>
+              <ul class="about__list">
+                <li><span>Procedural 3D graphics</span> — ships, asteroids and crystals are generated in code.</li>
+                <li><span>Real-time rendering</span> — a single WebGL loop driven by delta time.</li>
+                <li><span>Collision detection</span> — lightweight bounding-sphere checks on active objects.</li>
+                <li><span>Responsive controls</span> — keyboard on desktop, touch controls on mobile.</li>
+                <li><span>Performance optimization</span> — object pooling, capped pixel ratio, reusable geometry.</li>
+              </ul>
+            </div>
+          </section>
+        </main>
+
+        <!-- ---------- Footer ---------- -->
+        <footer class="footer">
+          <div class="footer__brand">
+            <span class="footer__logo">NEBULA RUNNER</span>
+            <p>Built for the web. Designed for the void.</p>
+          </div>
+          <div class="footer__tech" aria-label="Technology">
+            <span>Three.js</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span>
+          </div>
+          <div class="footer__links">
+            <a href="https://github.com/your-username/nebula-runner" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span class="footer__copy">© <span id="year"></span> ACM SIGGRAPH Game Lab</span>
+          </div>
+        </footer>
+      </div>
+
+      <!-- ===================== GAME SCREEN =====================
+           The Three.js canvas and all in-game overlays (loading, start,
+           HUD, pause, game-over) are created and managed by the JS modules. -->
+      <div id="game-screen" class="game-screen" data-view="game" hidden></div>
+    </div>
+
+    <!-- WebGL unavailable fallback (shown by JS if the context can't be created). -->
+    <div id="webgl-error" class="fatal" hidden>
+      <div class="fatal__box">
+        <h2>WebGL Unavailable</h2>
+        <p>Your browser does not support WebGL, which is required for this 3D experience.</p>
+        <p class="fatal__hint">Try a recent version of Chrome, Firefox, Edge or Safari with hardware acceleration enabled.</p>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="fatal"><div class="fatal__box">
+        <h2>JavaScript Required</h2>
+        <p>Nebula Runner needs JavaScript enabled to run.</p>
+      </div></div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

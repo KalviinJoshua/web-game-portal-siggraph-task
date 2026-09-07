@@ -1,0 +1,26 @@
+{
+  "name": "nebula-runner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A browser-based 3D endless space runner built with Three.js — ACM SIGGRAPH Game Lab.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "threejs",
+    "game",
+    "endless-runner",
+    "webgl",
+    "vite"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
