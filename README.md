@@ -4,8 +4,8 @@ A browser-based **3D endless space runner** built with [Three.js](https://threej
 
 Built as a portfolio piece for the **ACM SIGGRAPH Game Lab**.
 
-> **Live demo:** _add your deployment URL here_
-> **Repository:** _add your Git repository URL here_
+> **Live demo:** [_add your deployment URL here_](https://web-game-portal-siggraph-task-fqsf9yxfg-kalviinjoshuas-projects.vercel.app/)
+> **Repository:**[ _add your Git repository URL here_](https://github.com/KalviinJoshua/web-game-portal-siggraph-task)
 
 ---
 
