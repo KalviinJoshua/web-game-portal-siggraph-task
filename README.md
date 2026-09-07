@@ -7,10 +7,10 @@ Built as a portfolio piece for the **ACM SIGGRAPH Game Lab**.
 ### 🔗 Project Links
 
 **Live Demo:**
-https://web-game-portal-siggraph-task-fqsf9yxfg-kalviinjoshuas-projects.vercel.app/
+[Play Nebula Runner](https://web-game-portal-siggraph-task-fqsf9yxfg-kalviinjoshuas-projects.vercel.app/)
 
 **GitHub Repository:**
-https://github.com/KalviinJoshua/web-game-portal-siggraph-task
+[View Source Code](https://github.com/KalviinJoshua/web-game-portal-siggraph-task)
 
 ## ✨ Features
 
